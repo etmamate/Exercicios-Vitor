@@ -1,0 +1,3 @@
+interface Conectavel {
+    void conectar();
+}
