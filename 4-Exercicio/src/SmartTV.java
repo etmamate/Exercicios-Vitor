@@ -1,12 +1,15 @@
+// Classe SmartTV que implementa ambas as interfaces
 class SmartTV implements Conectavel, Controlavel {
     private String nome;
     private boolean conectada;
     private boolean ligada;
+    private int canal;
 
     public SmartTV(String nome) {
         this.nome = nome;
         this.conectada = false;
         this.ligada = false;
+        this.canal = 1;
     }
 
     @Override
@@ -23,7 +26,7 @@ class SmartTV implements Conectavel, Controlavel {
     public void ligar() {
         if (!ligada) {
             ligada = true;
-            System.out.println(nome + " ligada");
+            System.out.println(nome + " ligada no canal " + canal);
         } else {
             System.out.println(nome + " já está ligada");
         }
@@ -39,14 +42,16 @@ class SmartTV implements Conectavel, Controlavel {
         }
     }
 
-    public void mudarCanal(int canal) {
+    public void mudarCanal(int novoCanal) {
         if (ligada && conectada) {
-            System.out.println(nome + " mudando para o canal " + canal);
+            canal = novoCanal;
+            System.out.println(nome + " mudou para o canal " + canal);
         } else {
             System.out.println(nome + " precisa estar ligada e conectada para mudar de canal");
         }
     }
 
+    @Override
     public String getNome() {
         return nome;
     }
@@ -57,5 +62,9 @@ class SmartTV implements Conectavel, Controlavel {
 
     public boolean isLigada() {
         return ligada;
+    }
+
+    public int getCanal() {
+        return canal;
     }
 }

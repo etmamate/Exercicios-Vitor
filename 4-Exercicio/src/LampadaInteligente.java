@@ -1,4 +1,5 @@
-class LampadaInteligente implements Conectavel, Controlavel, DispositivoInteligente {
+// Classe LampadaInteligente
+class LampadaInteligente implements Conectavel, Controlavel {
     private String nome;
     private boolean conectada;
     private boolean ligada;
@@ -26,7 +27,7 @@ class LampadaInteligente implements Conectavel, Controlavel, DispositivoIntelige
         if (!ligada) {
             ligada = true;
             intensidade = 100;
-            System.out.println(nome + " ligada com intensidade máxima");
+            System.out.println(nome + " ligada com intensidade máxima (100%)");
         } else {
             System.out.println(nome + " já está ligada");
         }
@@ -43,16 +44,29 @@ class LampadaInteligente implements Conectavel, Controlavel, DispositivoIntelige
         }
     }
 
-    public void ajustarIntensidade(int intensidade) {
+    public void ajustarIntensidade(int novaIntensidade) {
         if (ligada && conectada) {
-            this.intensidade = Math.max(0, Math.min(100, intensidade));
-            System.out.println(nome + " intensidade ajustada para " + this.intensidade + "%");
+            intensidade = Math.max(0, Math.min(100, novaIntensidade));
+            System.out.println(nome + " intensidade ajustada para " + intensidade + "%");
         } else {
             System.out.println(nome + " precisa estar ligada e conectada para ajustar intensidade");
         }
     }
 
+    @Override
     public String getNome() {
         return nome;
+    }
+
+    public boolean isConectada() {
+        return conectada;
+    }
+
+    public boolean isLigada() {
+        return ligada;
+    }
+
+    public int getIntensidade() {
+        return intensidade;
     }
 }

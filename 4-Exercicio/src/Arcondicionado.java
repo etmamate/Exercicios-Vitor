@@ -1,4 +1,5 @@
-class ArCondicionado implements Conectavel, Controlavel, DispositivoInteligente {
+// Classe ArCondicionado
+class ArCondicionado implements Conectavel, Controlavel {
     private String nome;
     private boolean conectado;
     private boolean ligado;
@@ -41,16 +42,29 @@ class ArCondicionado implements Conectavel, Controlavel, DispositivoInteligente 
         }
     }
 
-    public void ajustarTemperatura(int temperatura) {
+    public void ajustarTemperatura(int novaTemperatura) {
         if (ligado && conectado) {
-            this.temperatura = temperatura;
+            temperatura = novaTemperatura;
             System.out.println(nome + " temperatura ajustada para " + temperatura + "°C");
         } else {
             System.out.println(nome + " precisa estar ligado e conectado para ajustar temperatura");
         }
     }
 
+    @Override
     public String getNome() {
         return nome;
+    }
+
+    public boolean isConectado() {
+        return conectado;
+    }
+
+    public boolean isLigado() {
+        return ligado;
+    }
+
+    public int getTemperatura() {
+        return temperatura;
     }
 }
